@@ -1,9 +1,8 @@
 // watchdog.cpp : 定义控制台应用程序的入口点。
 // Create by zyao @20190527 for  watchdog  linux&windows应用用户守护进程
-
+// QQ: 1041367859
+// 个人网站：www.kingstargold.com
 #include "stdafx.h"
-
-
 #include "inifile.h"
 #include <stdio.h>  
 #include <stdlib.h>  
@@ -213,7 +212,7 @@ void InitDaemon()
 {
 #ifdef WIN32
 	//神奇的一句话，隐藏控制台界面
-	//#pragma comment(linker,"/subsystem:\"windows\"  /entry:\"mainCRTStartup\"" ) 
+	#pragma comment(linker,"/subsystem:\"windows\"  /entry:\"mainCRTStartup\"" ) 
 #else
 
 	int pid = 0;
@@ -226,43 +225,7 @@ void InitDaemon()
 	{
 		exit(0);
 	}
-	//dup2(1,dev/null); // 用我们新打开的文件描述符替换掉 标准输出  
-	/*
-	int pid;
-	//ignore terminal I/O, stop signals
-	signal(SIGTTOU, SIG_IGN);
-	signal(SIGTTIN, SIG_IGN);
-	signal(SIGTSTP, SIG_IGN);
-
-	//fork to put us in the background, whether or not the user specified'&' on the command line
-	if ((pid = fork()) < 0)
-	{
-		printf("Failed to fork first child!\n");
-		exit(1);
-	}
-	else if (pid > 0)
-	{
-		exit(0);		//terminate parent, continue in child
-	}
-
-	//成为本会话组的首进程
-	setsid();
-	signal(SIGHUP, SIG_IGN);
-
-	//保证本进程不是本会话组的首进程
-	if ((pid = fork()) < 0)
-	{
-		printf("Failed to fork second child!\n");
-		exit(1);
-	}
-	else if (pid > 0)
-	{
-		exit(0);
-	}
-
-	//clear the inherited umask
-	umask(0);
-	*/
+	
 #endif
 	return;
 }
